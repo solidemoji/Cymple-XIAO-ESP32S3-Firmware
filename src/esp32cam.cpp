@@ -35,12 +35,12 @@ cameraClass::cameraClass(){
         s->set_whitebal(s, 1);       // 0 = disable , 1 = enable
         s->set_awb_gain(s, 1);       // 0 = disable , 1 = enable
         s->set_wb_mode(s, 1);        // 0 to 4 - if awb_gain enabled (0 - Auto, 1 - Sunny, 2 - Cloudy, 3 - Office, 4 - Home)
-        s->set_exposure_ctrl(s, 1);  // 0 = disable , 1 = enable
-        s->set_aec2(s, 1);           // 0 = disable , 1 = enable
-        s->set_ae_level(s, 0);       // -2 to 2
-        s->set_aec_value(s, 120);    // 0 to 1200 (lower = darker, tuned to fix overexposure)
-        s->set_gain_ctrl(s, 1);      // 0 = disable , 1 = enable
-        s->set_agc_gain(s, 10);       // 0 to 30
+        s->set_exposure_ctrl(s, 0);  // 0 = disable , 1 = enable  (disabled: manual exposure below)
+        s->set_aec2(s, 0);           // 0 = disable , 1 = enable  (AEC2 off with auto-exposure)
+        s->set_ae_level(s, 0);       // -2 to 2 (no effect when exposure_ctrl off)
+        s->set_aec_value(s, 120);    // MANUAL exposure 0 to 1200 - fixed low value to avoid overexposure
+        s->set_gain_ctrl(s, 0);      // 0 = disable , 1 = enable  (AGC off: fix gain below to stop brightness flicker)
+        s->set_agc_gain(s, 0);       // 0 to 30 - fixed low gain (0 = minimum)
         s->set_gainceiling(s, (gainceiling_t)0);  // 0 to 6
         s->set_bpc(s, 1);            // 0 = disable , 1 = enable
         s->set_wpc(s, 1);            // 0 = disable , 1 = enable
